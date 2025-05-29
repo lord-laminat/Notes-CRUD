@@ -110,30 +110,33 @@ export function BoardList({ onSelectBoard }: BoardListProps) {
           <div
             key={board.id}
             className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+            style={{display: "flex", flexDirection: "column", justifyContent: "space-between"}}
           >
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold">{board.title}</h3>
-              <button
-                onClick={() => handleDeleteBoard(board.id)}
-                className="text-red-600 hover:text-red-800"
-              >
-                <Trash2 className="h-5 w-5" />
-              </button>
-            </div>
-            <div className="mb-4 space-y-2">
-              {board.tasks.slice(0, 3).map((task) => (
-                <div key={task.id} className="text-sm text-gray-600 truncate">
-                  • {task.title}
-                </div>
-              ))}
-              {board.tasks.length > 3 && (
-                <div className="text-sm text-gray-500">
-                  +{board.tasks.length - 3} more tasks
-                </div>
-              )}
-              {board.tasks.length === 0 && (
-                <div className="text-sm text-gray-500 italic">No tasks yet</div>
-              )}
+            <div>
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-lg font-semibold">{board.title}</h3>
+                <button
+                  onClick={() => handleDeleteBoard(board.id)}
+                  className="text-red-600 hover:text-red-800"
+                >
+                  <Trash2 className="h-5 w-5" />
+                </button>
+              </div>
+              <div className="mb-4 space-y-2">
+                {board.tasks.slice(0, 3).map((task) => (
+                  <div key={task.id} className="text-sm text-gray-600 truncate">
+                    • {task.title}
+                  </div>
+                ))}
+                {board.tasks.length > 3 && (
+                  <div className="text-sm text-gray-500">
+                    +{board.tasks.length - 3} more tasks
+                  </div>
+                )}
+                {board.tasks.length === 0 && (
+                  <div className="text-sm text-gray-500 italic">No tasks yet</div>
+                )}
+              </div>
             </div>
             <button
               onClick={() => onSelectBoard(board)}
