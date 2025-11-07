@@ -1,25 +1,11 @@
 FROM python:3.11-slim AS build_fastapi
 
-# системные зависимости для psycopg2 и сборки зависимостей
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    libpq-dev \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
-
-# рабочая директория
 WORKDIR /app
 
-# скопировать зависимости и поставить их (кешируем слой)
 COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
-# копируем приложение
 COPY . /app
-
-# небольшой скрипт ожидания БД
-COPY wait_for_db.py /app/wait_for_db.py
-RUN chmod +x /app/wait_for_db.py
 
 EXPOSE 8000
 
