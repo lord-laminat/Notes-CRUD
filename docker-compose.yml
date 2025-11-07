@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:15
+    image: postgres:alpine
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-appuser}
