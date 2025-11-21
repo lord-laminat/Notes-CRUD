@@ -8,7 +8,7 @@ on:
 
 jobs:
   build_and_test:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -45,7 +45,7 @@ jobs:
           retention-days: 7
 
   deploy_docker_images_to_hub:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build_and_test
     steps:
       - name: Checkout repository
