@@ -37,7 +37,7 @@ jobs:
           psql -U $DB_USER -d $POSTGRES_DB -h localhost -c "SELECT * FROM users;" > reports/psql.report
 
       - name: Upload reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-reports
           path: reports/
