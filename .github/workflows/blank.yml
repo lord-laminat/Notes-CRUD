@@ -35,7 +35,7 @@ jobs:
           curl -X POST -H "Content-Type: application/json" -d '{"username": "example", "email": "example@gmail.com", "password": "example"}' http://localhost:$APP_PORT/register > reports/curl.report
           echo "Attempt 2:" >> reports/curl.report
           curl -X POST -H "Content-Type: application/json" -d '{"username": "example", "email": "example@gmail.com", "password": "example"}' http://localhost:$APP_PORT/register >> reports/curl.report
-          psql -U $DB_USER -d $POSTGRES_DB -h localhost -p 8642 -c "SELECT * FROM users;" > reports/psql.report
+          psql -U $POSTGRES_USER -d $POSTGRES_DB -h localhost -p 8642 -c "SELECT * FROM users;" > reports/psql.report
 
       - name: Upload reports
         uses: actions/upload-artifact@v4
