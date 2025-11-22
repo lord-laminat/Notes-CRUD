@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        run: |
-          mkdir reports
       
       - name: Build and run containers
         env:
@@ -22,6 +20,7 @@ jobs:
           POSTGRES_DB: ${{ secrets.DB_NAME }}
           SECRET_KEY: ${{ secrets.APP_SECRET }}
         run: |
+          mkdir reports
           docker compose up --build -d > reports/docker-build.report
           docker compose ps > reports/docker-compose.report
 
